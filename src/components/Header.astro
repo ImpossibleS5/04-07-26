@@ -22,7 +22,6 @@ const menu = [
 
 <nav class="menu" id="menu" aria-hidden="true">
   <button class="menu__close" id="menu-close" aria-label="Закрыть меню">×</button>
-  <p class="menu__heading" aria-hidden="true">Меню</p>
   <ul>
     {menu.map((m) => (
       <li><a href={m.href} class="menu__link">{m.label}</a></li>

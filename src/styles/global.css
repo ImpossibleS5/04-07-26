@@ -146,7 +146,7 @@ a:hover { border-color: var(--accent-gold-deep); }
 .page-loader--out { opacity: 0; pointer-events: none; }
 .page-loader__heart {
   width: 64px;
-  height: 56px;
+  height: 64px;
   animation: heart-pulse 0.85s ease-in-out infinite;
   transform-origin: center;
   filter: drop-shadow(0 4px 12px rgba(233, 108, 122, 0.25));

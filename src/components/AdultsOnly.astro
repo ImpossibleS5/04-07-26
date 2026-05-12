@@ -1,0 +1,47 @@
+---
+import { wedding } from '../data/wedding'
+---
+
+<section class="adults section" id="adults">
+  <div class="container">
+    <h2 class="section-title">{wedding.adultsOnly.title}</h2>
+    <div class="divider">
+      <svg viewBox="0 0 60 12" width="56" height="12" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round">
+          <path d="M30 1 L30 11"/>
+          <path d="M30 4 C 24 2 18 2 12 5"/>
+          <path d="M30 4 C 36 2 42 2 48 5"/>
+        </g>
+        <ellipse cx="14" cy="5.5" rx="3" ry="1" transform="rotate(-30 14 5.5)" fill="currentColor"/>
+        <ellipse cx="46" cy="5.5" rx="3" ry="1" transform="rotate(30 46 5.5)" fill="currentColor"/>
+        <circle cx="30" cy="11" r="1.2" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <p class="adults__intro">{wedding.adultsOnly.intro}</p>
+    <p class="adults__body">{wedding.adultsOnly.body}</p>
+  </div>
+</section>
+
+<style>
+  .adults { text-align: center; }
+  .adults__intro {
+    font-family: var(--font-script);
+    font-size: 36px;
+    color: var(--accent-rose-deep);
+    margin: 0 0 22px;
+    line-height: 1.1;
+  }
+  @media (min-width: 768px) {
+    .adults__intro { font-size: 44px; }
+  }
+  .adults__body {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-secondary);
+    margin: 0 auto;
+    max-width: 380px;
+    line-height: 1.6;
+  }
+</style>

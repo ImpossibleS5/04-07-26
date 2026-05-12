@@ -1,0 +1,59 @@
+---
+import { wedding } from '../data/wedding'
+---
+
+<section class="gifts section" id="gifts">
+  <div class="container">
+    <h2 class="section-title">{wedding.gifts.title}</h2>
+    <div class="divider">
+      <svg viewBox="0 0 60 12" width="56" height="12" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round">
+          <path d="M30 1 L30 11"/>
+          <path d="M30 4 C 24 2 18 2 12 5"/>
+          <path d="M30 4 C 36 2 42 2 48 5"/>
+        </g>
+        <ellipse cx="14" cy="5.5" rx="3" ry="1" transform="rotate(-30 14 5.5)" fill="currentColor"/>
+        <ellipse cx="46" cy="5.5" rx="3" ry="1" transform="rotate(30 46 5.5)" fill="currentColor"/>
+        <circle cx="30" cy="11" r="1.2" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <div class="gifts__icon" aria-hidden="true">
+      <svg viewBox="0 0 48 56" width="44" height="52">
+        <g stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 14 C 14 8, 18 4, 22 6 C 24 7, 24 10, 24 14"/>
+          <path d="M32 14 C 34 8, 30 4, 26 6 C 24 7, 24 10, 24 14"/>
+          <ellipse cx="24" cy="20" rx="14" ry="5"/>
+          <path d="M11 22 L11 50 C 11 51, 12 52, 13 52 L 35 52 C 36 52, 37 51, 37 50 L 37 22"/>
+          <path d="M24 20 L24 52"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="gifts__body">{wedding.gifts.flowers}</p>
+    <p class="gifts__body gifts__body--envelope">{wedding.gifts.envelope}</p>
+  </div>
+</section>
+
+<style>
+  .gifts { text-align: center; }
+  .gifts__icon {
+    color: var(--accent-gold-deep);
+    margin: 0 0 24px;
+    display: flex;
+    justify-content: center;
+  }
+  .gifts__icon svg {
+    filter: drop-shadow(0 4px 12px rgba(122, 104, 64, 0.18));
+  }
+  .gifts__body {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-secondary);
+    margin: 0 auto 22px;
+    max-width: 420px;
+    line-height: 1.6;
+  }
+  .gifts__body--envelope { margin-bottom: 0; }
+</style>

@@ -22,11 +22,13 @@ Site URL: `https://impossibles5.github.io/invite/`
 The site sends RSVP submissions to a Google Form. To wire it up:
 
 1. Go to https://forms.google.com and create a new form titled e.g. «Подтверждение присутствия».
-2. Add two questions:
+2. Add four questions:
    - **Имя и фамилия** — short answer, required.
+   - **Номер телефона** — short answer, required. (Front-end already validates and submits in `+7XXXXXXXXXX` form.)
    - **Присутствие** — multiple choice with two options:
      - `Я с удовольствием приду`
-     - `К сожалению, не смогу присутствовать`
+     - `К сожалению, не смогу прийти`
+   - **Имена дополнительных гостей** — short answer, **not** required. (Front-end only sends this entry when the "Я буду не один" checkbox is on.)
 3. Open the form's response settings and enable email notifications (Settings → ⋮ → Get email notifications for new responses).
 4. Click **Send** → link tab → copy the form URL. The URL contains the form ID after `/d/e/`.
 5. Get field entry IDs:
@@ -41,7 +43,9 @@ The site sends RSVP submissions to a Google Form. To wire it up:
      formActionUrl: 'https://docs.google.com/forms/d/e/<FORM_ID>/formResponse',
      fields: {
        name: 'entry.<NUMBER>',
+       phone: 'entry.<NUMBER>',
        attendance: 'entry.<NUMBER>',
+       companions: 'entry.<NUMBER>',
      },
      // ...
    }

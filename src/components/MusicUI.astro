@@ -23,7 +23,13 @@ const audioSrc = wedding.music.src
   </div>
 
   <button class="music-toggle" id="music-toggle" aria-label="Включить/выключить музыку" hidden>
-    <span id="music-toggle-icon">♪</span>
+    <span class="music-toggle__icon" id="music-toggle-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22">
+        <path d="M9 18.5 L9 6.5 L18 4.5 L18 14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <ellipse cx="7" cy="18.5" rx="2.4" ry="1.9" fill="currentColor"/>
+        <ellipse cx="16" cy="14" rx="2.4" ry="1.9" fill="currentColor"/>
+      </svg>
+    </span>
   </button>
 
   <div class="music-toast" id="music-toast" hidden></div>
@@ -123,13 +129,19 @@ const audioSrc = wedding.music.src
     border: 1px solid var(--line-soft);
     box-shadow: var(--shadow-soft);
     color: var(--accent-gold-deep);
-    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    padding: 0;
     transition: background 220ms var(--ease-out), color 220ms var(--ease-out),
                 transform 200ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  }
+  .music-toggle__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
   }
   @media (hover: hover) and (pointer: fine) {
     .music-toggle:hover {
@@ -173,9 +185,23 @@ const audioSrc = wedding.music.src
 
   audio.volume = 0.4
 
+  const PLAY_SVG = `
+    <svg viewBox="0 0 24 24" width="22" height="22">
+      <path d="M9 18.5 L9 6.5 L18 4.5 L18 14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <ellipse cx="7" cy="18.5" rx="2.4" ry="1.9" fill="currentColor"/>
+      <ellipse cx="16" cy="14" rx="2.4" ry="1.9" fill="currentColor"/>
+    </svg>
+  `
+  const PAUSE_SVG = `
+    <svg viewBox="0 0 24 24" width="20" height="20">
+      <rect x="7" y="6" width="3.5" height="12" rx="1" fill="currentColor"/>
+      <rect x="13.5" y="6" width="3.5" height="12" rx="1" fill="currentColor"/>
+    </svg>
+  `
+
   function setToggleState(on: boolean) {
     toggle.dataset.on = String(on)
-    toggleIcon.textContent = on ? '⏸' : '♪'
+    toggleIcon.innerHTML = on ? PAUSE_SVG : PLAY_SVG
     toggle.setAttribute('aria-label', on ? 'Выключить музыку' : 'Включить музыку')
     toggle.hidden = false
   }
@@ -195,7 +221,14 @@ const audioSrc = wedding.music.src
       await audio.play()
       return true
     } catch {
-      showToast('Браузер заблокировал автозапуск. Нажмите ♪')
+      // Distinguish a missing/unsupported file (404, wrong format) from a
+      // browser autoplay block. If audio.error is set, the file itself failed
+      // to load — show the same placeholder toast as for an empty src.
+      if (audio.error) {
+        showToast(wedding.music.placeholderToast)
+      } else {
+        showToast('Браузер заблокировал автозапуск. Нажмите ♪')
+      }
       return false
     }
   }

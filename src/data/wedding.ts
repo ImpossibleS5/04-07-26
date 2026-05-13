@@ -37,6 +37,11 @@ export const wedding = {
       place: 'ЗАГС Советского района, г. Волгоград',
     },
     {
+      time: '16:30',
+      title: 'Свадебный фуршет',
+      place: 'Ресторан «Фьюжн»',
+    },
+    {
       time: '17:00',
       title: 'Свадебный банкет',
       place: 'Ресторан «Фьюжн»',
@@ -85,12 +90,13 @@ export const wedding = {
   },
 
   rsvp: {
-    formActionUrl: 'https://docs.google.com/forms/d/e/REPLACE_FORM_ID/formResponse',
+    formActionUrl:
+      'https://docs.google.com/forms/d/e/1FAIpQLSc7ntbPNz3r2U3ou4NNkiRekporJrLhlgNNSsPAaZWp-sWqkw/formResponse',
     fields: {
-      name: 'entry.0000000000',
-      phone: 'entry.0000000002',
-      attendance: 'entry.0000000001',
-      companions: 'entry.0000000003',
+      name: 'entry.866371534',
+      phone: 'entry.1675350302',
+      attendance: 'entry.544460648',
+      companions: 'entry.1095576777',
     },
     attendanceValues: {
       yes: 'Я с удовольствием приду',

@@ -1,7 +1,7 @@
 ---
 import { wedding } from '../data/wedding'
 
-const icons = ['bouquet', 'rings', 'glass', 'heart'] as const
+const icons = ['bouquet', 'rings', 'glass', 'plate', 'heart'] as const
 type Icon = typeof icons[number]
 ---
 
@@ -60,6 +60,15 @@ type Icon = typeof icons[number]
                     <path d="M16 32 L24 32"/>
                   </g>
                   <path d="M14 8 L26 8 L25 14 L15 14 Z" fill="currentColor" opacity="0.4"/>
+                </svg>
+              )}
+              {icon === 'plate' && (
+                <svg viewBox="0 0 24 24">
+                  <g stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6.5 3.5 L6.5 7.5 M9 3.5 L9 7.5 M11.5 3.5 L11.5 7.5"/>
+                    <path d="M9 7.5 L9 20.5"/>
+                    <path d="M15 3.5 C 17.5 4.5, 17.5 10, 15.5 11.5 L 15.5 20.5"/>
+                  </g>
                 </svg>
               )}
               {icon === 'heart' && (
@@ -137,6 +146,7 @@ type Icon = typeof icons[number]
   .timeline__item[data-stagger='1'] { transition-delay: 140ms; }
   .timeline__item[data-stagger='2'] { transition-delay: 280ms; }
   .timeline__item[data-stagger='3'] { transition-delay: 420ms; }
+  .timeline__item[data-stagger='4'] { transition-delay: 560ms; }
 
   .timeline__stamp {
     flex: 0 0 72px;

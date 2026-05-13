@@ -77,16 +77,6 @@ import { wedding } from '../data/wedding'
         </div>
       </div>
 
-      <input
-        type="text"
-        name="phone_alt"
-        id="rsvp-honeypot"
-        tabindex="-1"
-        autocomplete="off"
-        class="rsvp-form__honeypot"
-        aria-hidden="true"
-      />
-
       <div class="rsvp-form__notice" id="rsvp-notice" role="status" aria-live="polite" hidden></div>
 
       <noscript>
@@ -177,13 +167,6 @@ import { wedding } from '../data/wedding'
     height: 18px;
     flex-shrink: 0;
   }
-  .rsvp-form__honeypot {
-    position: absolute;
-    left: -9999px;
-    opacity: 0;
-    pointer-events: none;
-  }
-
   /* Plus-one checkbox — custom-styled, matches the form's serif/engraved tone */
   .rsvp-form__check {
     display: flex;
@@ -307,7 +290,6 @@ import { wedding } from '../data/wedding'
   const companionsCheck = document.getElementById('rsvp-with-companions') as HTMLInputElement
   const companionsInput = document.getElementById('rsvp-companions') as HTMLInputElement
   const companionsWrap = document.getElementById('rsvp-companions-wrap') as HTMLDivElement
-  const honeypot = document.getElementById('rsvp-honeypot') as HTMLInputElement
   const notice = document.getElementById('rsvp-notice')!
   const radios = form.querySelectorAll<HTMLInputElement>('input[name="attendance"]')
 
@@ -384,13 +366,6 @@ import { wedding } from '../data/wedding'
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
-    if (honeypot.value.trim() !== '') {
-      // bot — fake success, do nothing
-      showNotice(wedding.rsvp.successMessage)
-      form.reset()
-      validate()
-      return
-    }
     const attendance = [...radios].find((r) => r.checked)?.value
     if (!attendance) return
 

@@ -90,21 +90,8 @@ export const wedding = {
   },
 
   rsvp: {
-    formActionUrl:
-      'https://docs.google.com/forms/d/e/1FAIpQLSc7ntbPNz3r2U3ou4NNkiRekporJrLhlgNNSsPAaZWp-sWqkw/formResponse',
-    fields: {
-      name: 'entry.866371534',
-      phone: 'entry.1675350302',
-      attendance: 'entry.544460648',
-      companions: 'entry.1095576777',
-    },
-    attendanceValues: {
-      yes: 'Я с удовольствием приду',
-      no: 'К сожалению, не смогу прийти',
-    },
-    successMessage: 'Спасибо! Мы вас ждём ❤',
-    declineMessage: 'Жаль, что не сможете прийти. Спасибо, что дали знать!',
-    errorMessage: 'Что-то пошло не так. Попробуйте ещё раз или обновите страницу.',
+    formUrl:
+      'https://docs.google.com/forms/d/e/1FAIpQLSc7ntbPNz3r2U3ou4NNkiRekporJrLhlgNNSsPAaZWp-sWqkw/viewform',
   },
 } as const
 

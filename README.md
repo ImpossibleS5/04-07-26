@@ -17,41 +17,19 @@ Pushes to `main` trigger GitHub Actions, which builds and publishes to GitHub Pa
 
 Site URL: `https://impossibles5.github.io/04-07-26/`
 
-## Setting up Google Forms for RSVP
+## RSVP
 
-The site sends RSVP submissions to a Google Form. To wire it up:
+The RSVP section is a single CTA button that opens a Google Form in a new tab — no in-page form, no programmatic POSTs (browser anti-abuse on Google's side made the embedded approach unreliable).
 
-1. Go to https://forms.google.com and create a new form titled e.g. «Подтверждение присутствия».
-2. Add four questions:
-   - **Имя и фамилия** — short answer, required.
-   - **Номер телефона** — short answer, required. (Front-end already validates and submits in `+7XXXXXXXXXX` form.)
-   - **Присутствие** — multiple choice with two options:
-     - `Я с удовольствием приду`
-     - `К сожалению, не смогу прийти`
-   - **Имена дополнительных гостей** — short answer, **not** required. (Front-end only sends this entry when the "Я буду не один" checkbox is on.)
-3. Open the form's response settings and enable email notifications (Settings → ⋮ → Get email notifications for new responses).
-4. Click **Send** → link tab → copy the form URL. The URL contains the form ID after `/d/e/`.
-5. Get field entry IDs:
-   - Click **⋮ → Get pre-filled link**.
-   - Fill the fields with placeholder values (e.g. `NAME` and `Я с удовольствием приду`).
-   - Click **Get link** → copy the URL.
-   - The URL contains `entry.NNNNNNNN=NAME&entry.MMMMMMMM=...` — these `entry.NNNN` keys are the field IDs.
-6. Open `src/data/wedding.ts` and update:
+To swap the form, edit `src/data/wedding.ts`:
 
-   ```ts
-   rsvp: {
-     formActionUrl: 'https://docs.google.com/forms/d/e/<FORM_ID>/formResponse',
-     fields: {
-       name: 'entry.<NUMBER>',
-       phone: 'entry.<NUMBER>',
-       attendance: 'entry.<NUMBER>',
-       companions: 'entry.<NUMBER>',
-     },
-     // ...
-   }
-   ```
+```ts
+rsvp: {
+  formUrl: 'https://docs.google.com/forms/d/e/<FORM_ID>/viewform',
+}
+```
 
-7. Commit and push — the deploy will rebuild and the form starts working.
+Enable email notifications inside the form: Responses tab → ⋮ → **Get email notifications for new responses**. Link the form to a Google Sheet for tabular responses: Responses tab → green Sheets icon.
 
 ## Replacing placeholder assets
 

@@ -19,76 +19,19 @@ import { wedding } from '../data/wedding'
     </div>
 
     <p class="rsvp__lead">
-      Пожалуйста, дайте знать, сможете ли вы быть с нами в этот особенный день
+      Пожалуйста, дайте знать, сможете ли вы быть с&nbsp;нами в&nbsp;этот особенный день
     </p>
 
-    <form class="rsvp-form" id="rsvp-form" novalidate>
-      <label class="rsvp-form__label" for="rsvp-name">Ваше имя и фамилия</label>
-      <input
-        type="text"
-        id="rsvp-name"
-        name="name"
-        autocomplete="name"
-        class="rsvp-form__input"
-        required
-      />
+    <a
+      class="rsvp__cta"
+      href={wedding.rsvp.formUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Открыть форму подтверждения
+    </a>
 
-      <label class="rsvp-form__label" for="rsvp-phone">Номер телефона</label>
-      <input
-        type="tel"
-        id="rsvp-phone"
-        name="phone"
-        inputmode="numeric"
-        autocomplete="tel"
-        placeholder="+7 (___) ___-__-__"
-        class="rsvp-form__input"
-        required
-      />
-
-      <fieldset class="rsvp-form__radios">
-        <legend>Присутствие</legend>
-        <label class="rsvp-form__radio">
-          <input type="radio" name="attendance" value="yes" />
-          <span>{wedding.rsvp.attendanceValues.yes}</span>
-        </label>
-        <label class="rsvp-form__radio">
-          <input type="radio" name="attendance" value="no" />
-          <span>{wedding.rsvp.attendanceValues.no}</span>
-        </label>
-      </fieldset>
-
-      <label class="rsvp-form__check">
-        <input type="checkbox" id="rsvp-with-companions" name="with_companions" />
-        <span class="rsvp-form__check-mark" aria-hidden="true"></span>
-        <span class="rsvp-form__check-text">Я буду не один</span>
-      </label>
-
-      <div class="rsvp-form__companions" id="rsvp-companions-wrap" data-open="false" aria-hidden="true">
-        <div class="rsvp-form__companions-inner">
-          <label class="rsvp-form__label" for="rsvp-companions">Имена гостей через запятую</label>
-          <input
-            type="text"
-            id="rsvp-companions"
-            name="companions"
-            autocomplete="off"
-            placeholder="Например: Мария, Пётр"
-            class="rsvp-form__input"
-          />
-        </div>
-      </div>
-
-      <div class="rsvp-form__notice" id="rsvp-notice" role="status" aria-live="polite" hidden></div>
-
-      <noscript>
-        <p class="rsvp-form__noscript">
-          Для отправки формы нужно включить JavaScript. Если не получается — напишите нам в&nbsp;мессенджер.
-        </p>
-      </noscript>
-
-      <button type="submit" class="primary rsvp-form__submit" id="rsvp-submit" disabled>
-        Отправить
-      </button>
-    </form>
+    <p class="rsvp__hint">Откроется на отдельной странице</p>
   </div>
 </section>
 
@@ -99,305 +42,43 @@ import { wedding } from '../data/wedding'
     font-style: italic;
     font-size: 17px;
     color: var(--ink-secondary);
-    margin: 0 auto 32px;
-    max-width: 360px;
-    line-height: 1.5;
+    margin: 0 auto 36px;
+    max-width: 380px;
+    line-height: 1.55;
   }
-
-  .rsvp-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: left;
-  }
-  .rsvp-form__label {
-    font-family: var(--font-engraved);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.32em;
-    margin-bottom: -6px;
-  }
-  .rsvp-form__input {
-    background: transparent;
+  .rsvp__cta {
+    display: inline-block;
+    background: var(--accent-rose);
+    color: #fff;
     border: none;
-    border-bottom: 1px solid var(--accent-gold);
-    padding: 11px 0;
-    font-family: var(--font-serif);
-    font-size: 18px;
-    color: var(--ink-primary);
-    transition: border-color 220ms var(--ease-out);
-    width: 100%;
-  }
-  .rsvp-form__input:focus {
-    outline: none;
-    border-bottom-color: var(--accent-rose-deep);
-    border-bottom-width: 2px;
-  }
-  .rsvp-form__radios {
-    border: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .rsvp-form__radios legend {
+    border-radius: var(--radius-pill);
+    padding: 16px 36px;
     font-family: var(--font-engraved);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 500;
-    color: var(--ink-secondary);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    letter-spacing: 0.32em;
-    margin-bottom: 12px;
+    text-decoration: none;
+    border-bottom: none;
+    box-shadow: var(--shadow-soft);
+    transition:
+      background 180ms var(--ease-out),
+      transform 160ms var(--ease-press),
+      box-shadow 200ms var(--ease-out);
   }
-  .rsvp-form__radio {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--font-serif);
-    font-size: 17px;
-    cursor: pointer;
-    line-height: 1.4;
+  @media (hover: hover) and (pointer: fine) {
+    .rsvp__cta:hover {
+      background: var(--accent-rose-deep);
+      box-shadow: var(--shadow-card);
+      border-bottom-color: transparent;
+    }
   }
-  .rsvp-form__radio input[type='radio'] {
-    accent-color: var(--accent-rose-deep);
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-  }
-  /* Plus-one checkbox — custom-styled, matches the form's serif/engraved tone */
-  .rsvp-form__check {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.4;
-    cursor: pointer;
-    user-select: none;
-    color: var(--ink-primary);
-  }
-  .rsvp-form__check input[type='checkbox'] {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    width: 0;
-    height: 0;
-  }
-  .rsvp-form__check-mark {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-    border: 1px solid var(--accent-gold);
-    border-radius: 4px;
-    background: transparent;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out);
-    position: relative;
-  }
-  .rsvp-form__check-mark::after {
-    content: '';
-    width: 12px;
-    height: 6px;
-    border-left: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    transform: rotate(-45deg) translate(1px, -1px) scale(0.6);
-    opacity: 0;
-    transition: opacity 160ms var(--ease-out), transform 200ms var(--ease-out);
-  }
-  .rsvp-form__check input:checked + .rsvp-form__check-mark {
-    background: var(--accent-rose-deep);
-    border-color: var(--accent-rose-deep);
-  }
-  .rsvp-form__check input:checked + .rsvp-form__check-mark::after {
-    opacity: 1;
-    transform: rotate(-45deg) translate(1px, -1px) scale(1);
-  }
-  .rsvp-form__check input:focus-visible + .rsvp-form__check-mark {
-    outline: 2px solid var(--accent-rose-deep);
-    outline-offset: 3px;
-  }
-
-  /* Conditional companions field — smooth height reveal via grid trick */
-  .rsvp-form__companions {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 280ms var(--ease-out), opacity 220ms var(--ease-out);
-    opacity: 0;
-    margin-top: -8px;
-  }
-  .rsvp-form__companions[data-open='true'] {
-    grid-template-rows: 1fr;
-    opacity: 1;
-  }
-  .rsvp-form__companions-inner {
-    overflow: hidden;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 8px;
-  }
-
-  /* Inline notice — replaces the captcha slot. Appears between radios and submit */
-  .rsvp-form__notice {
-    background: rgba(162, 142, 95, 0.10);
-    border: 1px solid var(--accent-gold);
-    border-radius: var(--radius-card);
-    padding: 14px 16px;
-    color: var(--ink-primary);
+  .rsvp__cta:active { transform: scale(0.97); }
+  .rsvp__hint {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 16px;
-    line-height: 1.4;
-    text-align: center;
-    transition: opacity 400ms var(--ease-out);
-  }
-  .rsvp-form__notice[data-kind='error'] {
-    background: rgba(201, 122, 122, 0.10);
-    border-color: #C97A7A;
-    color: #8A4848;
-  }
-
-  .rsvp-form__submit {
-    margin-top: 8px;
-    align-self: stretch;
-  }
-  .rsvp-form__noscript {
-    background: rgba(212, 165, 165, 0.15);
-    border: 1px solid var(--accent-rose);
-    border-radius: var(--radius-card);
-    padding: 12px 14px;
-    color: var(--ink-primary);
-    font-family: var(--font-serif);
     font-size: 14px;
-    margin: 0;
+    color: var(--ink-muted);
+    margin: 18px 0 0;
   }
 </style>
-
-<script>
-  import { wedding } from '../data/wedding'
-  import { formatRuPhone, isFormReady, normalizeRuPhone } from '../scripts/rsvp'
-
-  const form = document.getElementById('rsvp-form') as HTMLFormElement
-  const submit = document.getElementById('rsvp-submit') as HTMLButtonElement
-  const nameInput = document.getElementById('rsvp-name') as HTMLInputElement
-  const phoneInput = document.getElementById('rsvp-phone') as HTMLInputElement
-  const companionsCheck = document.getElementById('rsvp-with-companions') as HTMLInputElement
-  const companionsInput = document.getElementById('rsvp-companions') as HTMLInputElement
-  const companionsWrap = document.getElementById('rsvp-companions-wrap') as HTMLDivElement
-  const notice = document.getElementById('rsvp-notice')!
-  const radios = form.querySelectorAll<HTMLInputElement>('input[name="attendance"]')
-
-  // Live phone mask. Triggers on every input, including paste, autofill, and
-  // programmatic changes — so a pasted "89991234567" or "+7 999 123-45-67" all
-  // normalize to the same display form. Cursor is parked at the end after each
-  // re-format; for a mask this short that's the standard UX.
-  function applyPhoneMask() {
-    const before = phoneInput.value
-    const formatted = formatRuPhone(before)
-    if (formatted !== before) {
-      phoneInput.value = formatted
-      const end = formatted.length
-      phoneInput.setSelectionRange?.(end, end)
-    }
-  }
-  phoneInput.addEventListener('input', () => {
-    applyPhoneMask()
-    validate()
-  })
-  // Some browsers (e.g. iOS autofill) skip the input event — backstop on blur.
-  phoneInput.addEventListener('blur', applyPhoneMask)
-
-  const validate = () => {
-    const checked = [...radios].find((r) => r.checked)
-    submit.disabled = !isFormReady(
-      nameInput.value,
-      checked?.value ?? null,
-      phoneInput.value,
-      companionsCheck.checked,
-      companionsInput.value
-    )
-  }
-
-  function syncCompanionsVisibility() {
-    const on = companionsCheck.checked
-    companionsWrap.dataset.open = String(on)
-    companionsWrap.setAttribute('aria-hidden', String(!on))
-    companionsInput.required = on
-    if (!on) companionsInput.value = ''
-  }
-
-  companionsCheck.addEventListener('change', () => {
-    syncCompanionsVisibility()
-    validate()
-  })
-  companionsInput.addEventListener('input', validate)
-
-  nameInput.addEventListener('input', validate)
-  radios.forEach((r) => r.addEventListener('change', validate))
-
-  let hideTimer: number | null = null
-  function showNotice(text: string, kind: 'success' | 'error' = 'success') {
-    notice.textContent = text
-    notice.dataset.kind = kind
-    notice.hidden = false
-    if (hideTimer !== null) window.clearTimeout(hideTimer)
-    if (kind === 'success') {
-      hideTimer = window.setTimeout(() => {
-        notice.hidden = true
-        hideTimer = null
-      }, 5000)
-    }
-  }
-
-  async function sendWithRetry(body: URLSearchParams): Promise<void> {
-    try {
-      await fetch(wedding.rsvp.formActionUrl, { method: 'POST', mode: 'no-cors', body })
-    } catch {
-      await new Promise((r) => window.setTimeout(r, 2000))
-      await fetch(wedding.rsvp.formActionUrl, { method: 'POST', mode: 'no-cors', body })
-    }
-  }
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const attendance = [...radios].find((r) => r.checked)?.value
-    if (!attendance) return
-
-    submit.disabled = true
-    try {
-      const body = new URLSearchParams()
-      body.append(wedding.rsvp.fields.name, nameInput.value.trim())
-      body.append(wedding.rsvp.fields.phone, '+7' + normalizeRuPhone(phoneInput.value))
-      body.append(
-        wedding.rsvp.fields.attendance,
-        attendance === 'yes'
-          ? wedding.rsvp.attendanceValues.yes
-          : wedding.rsvp.attendanceValues.no
-      )
-      if (companionsCheck.checked) {
-        body.append(wedding.rsvp.fields.companions, companionsInput.value.trim())
-      }
-
-      await sendWithRetry(body)
-
-      const msg =
-        attendance === 'yes' ? wedding.rsvp.successMessage : wedding.rsvp.declineMessage
-      showNotice(msg)
-      form.reset()
-      syncCompanionsVisibility()
-      validate()
-    } catch {
-      showNotice(wedding.rsvp.errorMessage, 'error')
-      validate()
-    }
-  })
-
-  syncCompanionsVisibility()
-  validate()
-</script>
